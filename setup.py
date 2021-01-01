@@ -20,7 +20,7 @@ def main():
         # Versions should comply with PEP440.  For a discussion on single-sourcing
         # the version across setup.py and the project code, see
         # http://packaging.python.org/en/latest/tutorial.html#version
-        version="1.2.0b2",
+        version="1.2.0b3",
         description="Convert .py and .pyx to (.pyd | .so) very easily.",
         long_description=long_description,
         long_description_content_type="text/x-rst",
@@ -78,7 +78,7 @@ def main():
         # pip to create the appropriate form of executable for the target platform.
         entry_points={
             "console_scripts": [
-                "cythonizer=cythonizer.cythonizer:main",
+                "cythonizer=cythonizer:main",
             ],
         },
     )
