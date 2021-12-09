@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "cythonizer"
+version = "1.2.0b3"
+description = "Convert .py and .pyx to (.pyd | .so) very easily."
+authors = ["Rizwan-Hasan <rizwan.hasan486@gmail.com>"]
+homepage = "https://pypi.org/project/cythonizer/"
+repository = "https://github.com/TechLearnersInc/cythonizer"
+license = "MIT"
+readme = "README.rst"
+
+[tool.poetry.dependencies]
+python = ">=3.8"
+numpy = ">=1.19.4"
+Cython = ">=0.29.21"
+
+[tool.poetry.dev-dependencies]
+black = ">=21.12b0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
