@@ -13,18 +13,20 @@ from Cython.Distutils import build_ext
 logging.basicConfig(level=logging.DEBUG, format="%(levelname)s: %(message)s")
 
 
-class cythonizer:
+class Cythonizer:
     def __init__(self) -> None:
         self.__extension: list = []
-        self.__args = self.__Arguments()
-        self.__Checking()
-        self.__Compiling()
-        # self.__Cleanup()
+        self.__args = self.__arguments()
+        self.__checking()
+        self.__compiling()
+        # self.__cleanup()
 
-    # Argumebts Parser ↓
-    def __Arguments(self):
+    # Arguments Parser ↓
+    # noinspection PyMethodMayBeStatic
+    def __arguments(self):
         parser = argparse.ArgumentParser(
-            description="A script that will attempt to automatically convert one or more .py and .pyx files into the corresponding compiled .pyd or .so binary modules files."
+            description='A script that will attempt to automatically convert one or more .py and .pyx files into the '
+                        'corresponding compiled .pyd or .so binary modules files. '
         )
 
         # Taking Files ↓
@@ -59,7 +61,7 @@ class cythonizer:
         return parser.parse_args().__dict__
 
     # Received File Checking ↓
-    def __Checking(self):
+    def __checking(self):
         for file in self.__args.get("filenames"):
             if not os.path.exists(file):
                 logging.error(f'"{file}" doesn\'t exist.')
@@ -72,7 +74,7 @@ class cythonizer:
                 sys.exit(-1)
 
     # Includes Directory ↓
-    def __Includes_Dir(self):
+    def __includes_dir(self):
         # Extra include folders. Mainly for numpy.
         if self.__args.get("numpy_includes"):
             try:
@@ -86,7 +88,7 @@ class cythonizer:
             return []
 
     # Cython Compilation ↓
-    def __Compiling(self):
+    def __compiling(self):
         Cython.Compiler.Options.annotate = self.__args.get("annotation")
 
         ext_modules: list = []
@@ -105,11 +107,11 @@ class cythonizer:
 
         setup(
             cmdclass={"build_ext": build_ext},
-            include_dirs=self.__Includes_Dir(),
+            include_dirs=self.__includes_dir(),
             ext_modules=cythonize(module_list=ext_modules, language_level="3"),
         )
 
-    def __Cleanup(self):
+    def __cleanup(self):
         # Delete intermediate C files.
         for _ in self.__args.get("filenames"):
             filename = str(_)
@@ -120,10 +122,10 @@ class cythonizer:
 
 def main():
     try:
-        cythonizer()
+        Cythonizer()
     except Exception as e:
         logging.error(e)
 
 
 if __name__ == "__main__":
-    print("Hello World")
+    pass
