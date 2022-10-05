@@ -9,14 +9,15 @@ def main():
 
     # Get the long description from the relevant file
     long_description = ""
+    # noinspection PyBroadException
     try:
         with open(os.path.join(here, "README.rst"), encoding="utf-8") as f:
             long_description = f.read()
-    except:
+    except Exception:
         pass
 
     setup(
-        name="cythonizer",
+        name="Cythonizer",
         # Versions should comply with PEP440.  For a discussion on single-sourcing
         # the version across setup.py and the project code, see
         # http://packaging.python.org/en/latest/tutorial.html#version
@@ -58,13 +59,10 @@ def main():
             # Specify the Python versions you support here. In particular, ensure
             # that you indicate whether you support Python 2, Python 3 or both.
             "Programming Language :: Python :: 3",
-            "Programming Language :: Python :: 3.6",
-            "Programming Language :: Python :: 3.7",
-            "Programming Language :: Python :: 3.8",
             "Topic :: Software Development :: Build Tools",
         ],
         # What does your project relate to?
-        keywords="cython cythonizer",
+        keywords="cython Cythonizer",
         # You can just specify the packages manually here if your project is
         # simple. Or you can use find_packages().
         packages=find_packages(),
@@ -78,7 +76,7 @@ def main():
         # pip to create the appropriate form of executable for the target platform.
         entry_points={
             "console_scripts": [
-                "cythonizer=cythonizer:main",
+                "cythonizer = cythonizer:main",
             ],
         },
     )
